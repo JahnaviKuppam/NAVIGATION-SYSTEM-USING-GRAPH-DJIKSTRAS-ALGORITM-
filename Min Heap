@@ -1,0 +1,28 @@
+#ifndef MIN_HEAP_H
+#define MIN_HEAP_H
+
+#include <stdio.h>
+#include <stdlib.h>
+
+// Node structure for Min Heap
+struct Node {
+    int city;
+    int distance;
+};
+
+// Min Heap structure
+struct MinHeap {
+    struct Node *internalArray;
+    int capacity;
+    int currentSize;
+};
+
+// Function declarations
+void initializeMinHeap(struct MinHeap *minHeap, int capacity);
+void insertElementToMinHeap(struct MinHeap *minHeap, struct Node element);
+void extractMinElementFromMinHeap(struct MinHeap *minHeap);
+struct Node getMinElementFromMinHeap(struct MinHeap *minHeap);
+void heapify(struct MinHeap *minHeap, int i);
+void swapMinHeapNodes(struct Node *x, struct Node *y);
+
+#endif // MIN_HEAP_H
