@@ -1,0 +1,74 @@
+#include "min_heap.h"
+
+void initializeMinHeap(struct MinHeap *minHeap, int capacity) {
+    minHeap->internalArray = (struct Node *)malloc(capacity * sizeof(struct Node));
+    minHeap->capacity = capacity;
+    minHeap->currentSize = 0;
+}
+
+void swapMinHeapNodes(struct Node *x, struct Node *y) {
+    struct Node temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+int parentOfHeapNode(int i) {
+    return (i - 1) / 2;
+}
+
+int leftChildOfHeapNode(int i) {
+    return (2 * i + 1);
+}
+
+int rightChildOfHeapNode(int i) {
+    return (2 * i + 2);
+}
+
+struct Node getMinElementFromMinHeap(struct MinHeap *minHeap) {
+    return minHeap->internalArray[0];
+}
+
+void insertElementToMinHeap(struct MinHeap *minHeap, struct Node element) {
+    if (minHeap->currentSize < minHeap->capacity) {
+        minHeap->currentSize++;
+        int i = minHeap->currentSize - 1;
+        minHeap->internalArray[i] = element;
+
+        while (i != 0 && minHeap->internalArray[parentOfHeapNode(i)].distance > minHeap->internalArray[i].distance) {
+            swapMinHeapNodes(&minHeap->internalArray[i], &minHeap->internalArray[parentOfHeapNode(i)]);
+            i = parentOfHeapNode(i);
+        }
+    }
+}
+
+void heapify(struct MinHeap *minHeap, int i) {
+    int l = leftChildOfHeapNode(i);
+    int r = rightChildOfHeapNode(i);
+    int smallest = i;
+
+    if (l < minHeap->currentSize && minHeap->internalArray[l].distance < minHeap->internalArray[i].distance) {
+        smallest = l;
+    }
+
+    if (r < minHeap->currentSize && minHeap->internalArray[r].distance < minHeap->internalArray[smallest].distance) {
+        smallest = r;
+    }
+
+    if (smallest != i) {
+        swapMinHeapNodes(&minHeap->internalArray[i], &minHeap->internalArray[smallest]);
+        heapify(minHeap, smallest);
+    }
+}
+
+void extractMinElementFromMinHeap(struct MinHeap *minHeap) {
+    if (minHeap->currentSize > 0) {
+        if (minHeap->currentSize == 1) {
+            minHeap->currentSize--;
+            return;
+        }
+
+        minHeap->internalArray[0] = minHeap->internalArray[minHeap->currentSize - 1];
+        minHeap->currentSize--;
+        heapify(minHeap, 0);
+    }
+}
