@@ -1,0 +1,13 @@
+Shortest-Path-Finder/
+|-- src/
+|   |-- graph_shortest_path.c      # Main C code
+|-- include/
+|   |-- min_heap.h                 # Header file for Min Heap functions
+|   |-- graph.h                    # Header file for Graph-related functions
+|-- docs/
+|   |-- README.md                  # Project documentation
+|-- tests/
+|   |-- test_graph.c               # Test cases for graph functions
+|   |-- test_min_heap.c            # Test cases for heap functions
+|-- .gitignore                     # Ignore compiled files
+|-- Makefile                       # For easy compilation
