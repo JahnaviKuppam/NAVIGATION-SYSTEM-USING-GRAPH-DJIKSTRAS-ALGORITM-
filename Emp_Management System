@@ -1,6 +1,7 @@
 #include <stdio.h> 
 #include <stdlib.h> 
 #include <limits.h> 
+
 int isFileRead; 
 int adjacencyMatrix[26][26]; 
 int isExists[26]; 
@@ -10,6 +11,7 @@ int parentArr[26];
 struct Node 
 { 
 int city; 
+
 int distance; 
 }; 
 struct MinHeap 
