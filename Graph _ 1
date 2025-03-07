@@ -1,0 +1,8 @@
+#ifndef GRAPH_H
+#define GRAPH_H
+
+void initializeGraph(int adjacencyMatrix[26][26], int isExists[26]);
+void readInputData(int adjacencyMatrix[26][26], int isExists[26]);
+void showAdjacencyMatrix(int adjacencyMatrix[26][26], int isExists[26]);
+
+#endif // GRAPH_H
