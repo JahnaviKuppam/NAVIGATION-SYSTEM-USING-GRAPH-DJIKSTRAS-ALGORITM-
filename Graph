@@ -1,0 +1,58 @@
+#include "graph.h"
+#include <stdio.h>
+#include <stdlib.h>
+
+void initializeGraph(int adjacencyMatrix[26][26], int isExists[26]) {
+    for (int i = 0; i < 26; i++) {
+        isExists[i] = 0;
+        for (int j = 0; j < 26; j++) {
+            adjacencyMatrix[i][j] = -1;
+        }
+    }
+}
+
+void readInputData(int adjacencyMatrix[26][26], int isExists[26]) {
+    int numEdges;
+    printf("Enter the number of edges: ");
+    scanf("%d", &numEdges);
+
+    for (int i = 0; i < numEdges; i++) {
+        char city1, city2;
+        int distance;
+        printf("Enter City1-City2-Distance (e.g., A-B-5): ");
+        scanf(" %c-%c-%d", &city1, &city2, &distance);
+
+        int index1 = city1 - 'A';
+        int index2 = city2 - 'A';
+        isExists[index1] = isExists[index2] = 1;
+        adjacencyMatrix[index1][index2] = adjacencyMatrix[index2][index1] = distance;
+    }
+    printf("Data successfully read!\n");
+}
+
+void showAdjacencyMatrix(int adjacencyMatrix[26][26], int isExists[26]) {
+    printf("Adjacency Matrix:\n\n\t");
+
+    for (int i = 0; i < 26; i++) {
+        if (isExists[i]) {
+            printf("   %c\t", i + 'A');
+        }
+    }
+
+    printf("\n");
+    for (int i = 0; i < 26; i++) {
+        if (isExists[i]) {
+            printf("%c\t", i + 'A');
+            for (int j = 0; j < 26; j++) {
+                if (isExists[j]) {
+                    if (adjacencyMatrix[i][j] == -1) {
+                        printf("   -\t");
+                    } else {
+                        printf("%4d\t", adjacencyMatrix[i][j]);
+                    }
+                }
+            }
+            printf("\n");
+        }
+    }
+}
