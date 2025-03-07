@@ -1,0 +1,58 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <limits.h>
+
+// Global variables
+int isFileRead;
+int adjacencyMatrix[26][26];
+int isExists[26];
+int dist[26];
+int parentArr[26];
+
+// Node structure for Min Heap
+struct Node {
+    int city;
+    int distance;
+};
+
+// Min Heap structure
+struct MinHeap {
+    struct Node *internalArray;
+    int capacity;
+    int currentSize;
+};
+
+// Function declarations
+void initializeMinHeap(struct MinHeap *minHeap, int capacity);
+void insertElementToMinHeap(struct MinHeap *minHeap, struct Node element);
+void extractMinElementFromMinHeap(struct MinHeap *minHeap);
+struct Node getMinElementFromMinHeap(struct MinHeap *minHeap);
+void heapify(struct MinHeap *minHeap, int i);
+void swapMinHeapNodes(struct Node *x, struct Node *y);
+
+void readInputData();
+void showAdjacencyMatrix();
+void shortestPath();
+int showMenuAndGetChoice();
+void printPath(int j);
+
+int main() {
+    isFileRead = 0;
+    int userExited = 0;
+
+    while (!userExited) {
+        int choice = showMenuAndGetChoice();
+
+        if (choice == 1) {
+            readInputData();
+        } else if (choice == 2) {
+            showAdjacencyMatrix();
+        } else if (choice == 3) {
+            shortestPath();
+        } else if (choice == 4) {
+            userExited = 1;
+            printf("Good bye!\n\n");
+        }
+    }
+    return 0;
+}
