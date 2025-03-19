@@ -13,6 +13,7 @@ void initializeGraph(int adjacencyMatrix[26][26], int isExists[26]) {
 }
 
 void readInputData(int adjacencyMatrix[26][26], int isExists[26]) {
+
     int numEdges;
     printf("Enter the number of edges: ");
     scanf("%d", &numEdges);
