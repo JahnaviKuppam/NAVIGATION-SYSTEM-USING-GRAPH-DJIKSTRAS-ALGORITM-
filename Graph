@@ -5,7 +5,8 @@
 void initializeGraph(int adjacencyMatrix[26][26], int isExists[26]) {
     for (int i = 0; i < 26; i++) {
         isExists[i] = 0;
-        for (int j = 0; j < 26; j++) {
+        for (int j = 0; j < 26; j++)
+{
             adjacencyMatrix[i][j] = -1;
         }
     }
